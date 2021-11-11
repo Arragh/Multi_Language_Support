@@ -1,6 +1,11 @@
-﻿<div>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<div>
     @await Html.PartialAsync("_SelectLanguagePartial")
 </div>
+
+<h1>_Layout: @Localizer["Header"]</h1>
 
 @RenderBody()
 

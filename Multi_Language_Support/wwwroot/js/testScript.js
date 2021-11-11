@@ -3,13 +3,14 @@ let localization;
 
 $(function () {
 
-    let temp = '<%= Resources.View.Home.Index.ru.resx %>'
-
-    console.log(temp)
+    let culture = document.getElementById('selectCulture').value
 
     $.ajax({
         url: '/ajax/HomeAjax/GetResources',
         type: 'GET',
+        data: {
+            localize: culture
+        },
         traditional: true,
         success: async function (result) {
 
@@ -38,13 +39,13 @@ function setLocale() {
 
 function getInfo() {
 
-    let localize = document.getElementById('localize').value
+    let culture = document.getElementById('selectCulture').value
 
     $.ajax({
         url: '/ajax/HomeAjax/GetResources',
         type: 'GET',
         data: {
-            localize: localize
+            localize: culture
         },
         traditional: true,
         success: async function (result) {
@@ -57,4 +58,13 @@ function getInfo() {
             console.log(res)
         }
     })
+}
+
+function testOnChange() {
+
+    let culture = document.getElementById('selectCulture').value
+
+    document.cookie = '.AspNetCore.Culture=c=' + culture + '|uic=' + culture
+
+    console.log('trololo')
 }
